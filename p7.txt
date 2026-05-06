@@ -1,0 +1,42 @@
+import nltk
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+from nltk.stem import PorterStemmer, WordNetLemmatizer
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+
+text = "Data science is amazing and powerful"
+
+
+tokens = word_tokenize(text)
+
+
+stop_words = set(stopwords.words('english'))
+
+
+filtered = [w for w in tokens if w.lower() not in stop_words]
+
+
+ps = PorterStemmer()
+
+
+stemmed = [ps.stem(w) for w in filtered]
+
+
+lm = WordNetLemmatizer()
+
+
+lemmatized = [lm.lemmatize(w) for w in filtered]
+
+
+vectorizer = TfidfVectorizer()
+
+
+tfidf = vectorizer.fit_transform([text])
+
+
+print(tokens)
+print(filtered)
+print(stemmed)
+print(lemmatized)
+print(tfidf.toarray())
