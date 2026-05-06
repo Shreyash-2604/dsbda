@@ -1,0 +1,34 @@
+import pandas as pd
+import numpy as np
+
+
+df = pd.DataFrame({
+    'Name': ['A', 'B', 'C', 'D', 'E'],
+    'Marks': [85, 90, None, 40, 300],
+    'Attendance': [90, None, 80, 70, 95]
+})
+
+
+df['Marks'].fillna(df['Marks'].mean(), inplace=True)
+df['Attendance'].fillna(df['Attendance'].median(), inplace=True)
+
+
+Q1 = df['Marks'].quantile(0.25)
+Q3 = df['Marks'].quantile(0.75)
+
+
+IQR = Q3 - Q1
+
+
+lower = Q1 - 1.5 * IQR
+upper = Q3 + 1.5 * IQR
+
+
+outliers = df[(df['Marks'] < lower) | (df['Marks'] > upper)]
+print("Outliers:\n", outliers)
+df['Marks_norm'] = (df['Marks'] - df['Marks'].min()) / (df['Marks'].max() - df['Marks'].min())
+
+
+
+df['Marks_log'] = np.log(df['Marks'])
+print(df)
