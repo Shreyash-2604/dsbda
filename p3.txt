@@ -1,0 +1,26 @@
+import pandas as pd
+
+
+df = pd.read_csv("iris.csv")
+
+
+print(df.mean(numeric_only=True))
+
+
+print(df.median(numeric_only=True))
+
+
+print(df.min(numeric_only=True))
+
+
+print(df.max(numeric_only=True))
+
+
+print(df.var(numeric_only=True))
+
+
+print(df.std(numeric_only=True))
+
+
+print(df.groupby('species').mean(numeric_only=True))
+
