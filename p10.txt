@@ -1,0 +1,98 @@
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+
+df = pd.read_csv("Iris.csv")
+
+
+display(df.info())
+display(df.head())
+
+
+plt.figure(figsize=(8, 5))
+sns.histplot(
+    df['SepalLengthCm'],
+    bins=20,
+    kde=True,
+    color='blue'
+)
+plt.xlabel('Sepal Length')
+plt.ylabel('Frequency')
+plt.title('Distribution of Sepal Length')
+plt.grid(True)
+plt.show()
+
+
+plt.figure(figsize=(10, 5))
+sns.histplot(
+    df,
+    x='PetalLengthCm',
+    hue='Species',
+    bins=20,
+    kde=True,
+    palette='viridis',
+    alpha=0.6
+)
+plt.xlabel('Petal Length')
+plt.ylabel('Count')
+plt.title('Petal Length Distribution by Species')
+plt.show()
+
+
+plt.figure(figsize=(8, 5))
+sns.boxplot(
+    x=df['SepalWidthCm'],
+    color='orange'
+)
+plt.xlabel('Sepal Width')
+plt.title('Boxplot of Sepal Width')
+plt.show()
+
+
+plt.figure(figsize=(10, 5))
+sns.boxplot(
+    x='Species',
+    y='PetalWidthCm',
+    hue='Species',
+    data=df,
+    palette='Set2',
+    legend=False
+)
+plt.xlabel('Species')
+plt.ylabel('Petal Width')
+plt.title('Petal Width Distribution by Species')
+plt.show()
+
+
+
+plt.figure(figsize=(10, 5))
+sns.scatterplot(
+    x='SepalLengthCm',
+    y='PetalLengthCm',
+    hue='Species',
+    data=df,
+    palette='coolwarm'
+)
+plt.xlabel('Sepal Length')
+plt.ylabel('Petal Length')
+plt.title('Sepal Length vs Petal Length')
+plt.show()
+
+
+
+plt.figure(figsize=(10, 5))
+sns.histplot(
+    df['PetalWidthCm'],
+    bins=20,
+    kde=True,
+    color='green'
+)
+plt.xlabel('Petal Width')
+plt.ylabel('Frequency')
+plt.title('Distribution of Petal Width')
+
+
+plt.grid(True)
+plt.show()
+
