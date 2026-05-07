@@ -1,34 +1,67 @@
 import pandas as pd
 import numpy as np
+from sklearn.preprocessing import MinMaxScaler, StandardScaler
 
 
-df = pd.DataFrame({
-    'Name': ['A', 'B', 'C', 'D', 'E'],
-    'Marks': [85, 90, None, 40, 300],
-    'Attendance': [90, None, 80, 70, 95]
-})
+data = {
+    'Name': ['Amit', 'Neha', 'Rahul', 'Sneha', 'Karan'],
+    'Marks': [85, 90, np.nan, 35, 400],
+    'Attendance': [90, 95, 85, np.nan, 80]
+}
 
 
-df['Marks'].fillna(df['Marks'].mean(), inplace=True)
-df['Attendance'].fillna(df['Attendance'].median(), inplace=True)
+df = pd.DataFrame(data)
 
+
+print("Original Dataset:")
+print(df)
+
+
+df['Marks'] = df['Marks'].fillna(df['Marks'].mean())
+
+
+df['Attendance'] = df['Attendance'].fillna(df['Attendance'].mean())
+
+print("\nDataset After Handling Missing Values:")
+print(df)
 
 Q1 = df['Marks'].quantile(0.25)
 Q3 = df['Marks'].quantile(0.75)
-
-
 IQR = Q3 - Q1
 
+lower_limit = Q1 - 1.5 * IQR
+upper_limit = Q3 + 1.5 * IQR
 
-lower = Q1 - 1.5 * IQR
-upper = Q3 + 1.5 * IQR
-
-
-outliers = df[(df['Marks'] < lower) | (df['Marks'] > upper)]
-print("Outliers:\n", outliers)
-df['Marks_norm'] = (df['Marks'] - df['Marks'].min()) / (df['Marks'].max() - df['Marks'].min())
+print("\nLower Limit:", lower_limit)
+print("Upper Limit:", upper_limit)
 
 
+outliers = df[(df['Marks'] < lower_limit) | (df['Marks'] > upper_limit)]
 
-df['Marks_log'] = np.log(df['Marks'])
-print(df)
+print("\nOutliers:")
+print(outliers)
+
+
+
+df['Log_Marks'] = np.log(df['Marks'])
+
+print("\nLog Transformation:")
+print(df[['Marks', 'Log_Marks']])
+
+
+
+minmax = MinMaxScaler()
+
+df['Normalized_Marks'] = minmax.fit_transform(df[['Marks']])
+
+print("\nNormalized Data:")
+print(df[['Marks', 'Normalized_Marks']])
+
+
+
+scaler = StandardScaler()
+
+df['Scaled_Marks'] = scaler.fit_transform(df[['Marks']])
+
+print("\nScaled Data:")
+print(df[['Marks', 'Scaled_Marks']])
