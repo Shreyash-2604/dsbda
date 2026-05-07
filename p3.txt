@@ -1,26 +1,33 @@
 import pandas as pd
-
+import numpy as np
 
 df = pd.read_csv("iris.csv")
 
+print("First 5 Rows:")
+print(df.head())
 
+print("\nMean:")
 print(df.mean(numeric_only=True))
 
-
+print("\nMedian:")
 print(df.median(numeric_only=True))
 
-
+print("\nMinimum Values:")
 print(df.min(numeric_only=True))
 
-
+print("\nMaximum Values:")
 print(df.max(numeric_only=True))
 
-
+print("\nVariance:")
 print(df.var(numeric_only=True))
 
-
+print("\nStandard Deviation:")
 print(df.std(numeric_only=True))
 
+grouped_data = df.groupby('Species')
 
-print(df.groupby('species').mean(numeric_only=True))
+print("\nSpecies-wise Mean:")
+print(grouped_data.mean(numeric_only=True))
 
+print("\nSpecies-wise Statistical Summary:")
+print(grouped_data.describe())
