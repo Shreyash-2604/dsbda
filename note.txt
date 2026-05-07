@@ -1,0 +1,137 @@
+Logistic Regression is used to predict whether the output belongs to a category or not.
+Example
+Email is Spam or Not Spam
+Customer will Buy or Not Buy
+Student Pass or Fail
+
+Linear Regression is used to predict a numerical value based on input data.
+Example
+House Price Prediction
+Salary Prediction
+Temperature Prediction
+
+Histogram shows how many times values occur within different ranges.
+Example
+It can show:
+Age distribution
+Marks distribution
+Salary distribution
+
+Boxplot is used to visualize data distribution and detect outliers.
+It Shows
+Minimum value
+Maximum value
+Median
+Quartiles
+Outliers
+
+Outlier is an unusual or extreme value in the data.
+40, 45, 50, 48, 300
+
+Lemmatization converts words into their base or root meaningful form.
+running → run   (Lemmatization)
+running → runn  (Stemming)
+
+Stemming removes prefixes or suffixes from a word to get its root form.
+studies → studi
+
+Data Wrangling means converting messy data into clean and organized data.
+Tasks in Data Wrangling
+Handling missing values
+Removing duplicates
+Correcting data types
+Outlier handling
+Data transformation
+Data normalization
+
+sklearn is a library used to build and train machine learning models.
+It is Used For
+Classification
+Regression
+Clustering
+Data preprocessing
+Model evaluation
+Example Algorithms
+Linear Regression
+Logistic Regression
+Decision Tree
+KNN
+Naive Bayes
+
+Data Transformation means changing data into a better format for analysis or machine learning.
+Examples
+Normalization
+Standardization
+Log Transformation
+Encoding categorical data
+
+IQR is the difference between the third quartile (Q3) and first quartile (Q1).
+Formula
+IQR=Q3−Q1
+Outlier Detection Formula
+Lower Limit:
+Lower Limit=Q1−1.5×IQR
+Upper Limit:
+Upper Limit=Q3+1.5×IQR
+
+Confusion Matrix is a table used to evaluate classification model performance.
+It shows:
+correct predictions
+wrong predictions
+Structure
+[  TN  FP
+  FN  TP  ]
+
+
+Accuracy shows how many predictions are correct out of total predictions.
+Formula
+Accuracy=TP+TN/TP+TN+FP+FN
+
+Error Rate shows how many predictions are wrong.
+Formula
+Error Rate=1−Accuracy
+
+Precision tells how many predicted positives are actually correct.
+Formula:
+Precision= TP/TP+FP
+
+Recall tells how many actual positives were correctly identified.
+Formula
+Recall=TP/TP+FN
+
+Naïve Bayes is a classification algorithm based on probability and Bayes’ theorem.
+Uses
+Spam email detection
+Sentiment analysis
+Disease prediction
+Text classification
+
+Tokenization is the process of breaking text into smaller parts called tokens.
+
+POS Tagging identifies the grammatical role of each word in a sentence.
+
+Stopword Removal removes common unnecessary words from text.
+
+TF measures how many times a word appears in a document.
+
+Formula
+
+TF=Number of times a term appears in a document/Total number of terms in the document
+
+IDF measures how important a word is across all documents.
+TF-IDF=TF×IDF
+
+	​
+
+
+	​
+
+	​
+
+
+
+
+
+
+	​
+
