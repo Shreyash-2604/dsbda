@@ -1,42 +1,73 @@
 import nltk
+
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
-from nltk.stem import PorterStemmer, WordNetLemmatizer
+from nltk.stem import PorterStemmer
+from nltk.stem import WordNetLemmatizer
+from nltk import pos_tag
+
 from sklearn.feature_extraction.text import TfidfVectorizer
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('wordnet')
+nltk.download('averaged_perceptron_tagger')
 
+text = """Hello Mr. Smith, how are you doing today? The weather is 
+great, and city is awesome. The sky is pinkish-blue. You shouldn't 
+eat cardboard"""
 
-text = "Data science is amazing and powerful"
-
+print("Original Text:")
+print(text)
 
 tokens = word_tokenize(text)
 
+print("\nTokens:")
+print(tokens)
+
+pos = pos_tag(tokens)
+
+print("\nPOS Tagging:")
+print(pos)
 
 stop_words = set(stopwords.words('english'))
 
+filtered_words = []
 
-filtered = [w for w in tokens if w.lower() not in stop_words]
+for word in tokens:
+    if word.lower() not in stop_words:
+        filtered_words.append(word)
 
+print("\nAfter Stopword Removal:")
+print(filtered_words)
 
-ps = PorterStemmer()
+stemmer = PorterStemmer()
 
+stemmed_words = []
 
-stemmed = [ps.stem(w) for w in filtered]
+for word in filtered_words:
+    stemmed_words.append(stemmer.stem(word))
 
+print("\nStemmed Words:")
+print(stemmed_words)
 
-lm = WordNetLemmatizer()
+lemmatizer = WordNetLemmatizer()
 
+lemmatized_words = []
 
-lemmatized = [lm.lemmatize(w) for w in filtered]
+for word in filtered_words:
+    lemmatized_words.append(lemmatizer.lemmatize(word))
 
+print("\nLemmatized Words:")
+print(lemmatized_words)
+
+documents = [text]
 
 vectorizer = TfidfVectorizer()
 
+tfidf_matrix = vectorizer.fit_transform(documents)
 
-tfidf = vectorizer.fit_transform([text])
+print("\nTF-IDF Values:")
+print(tfidf_matrix.toarray())
 
-
-print(tokens)
-print(filtered)
-print(stemmed)
-print(lemmatized)
-print(tfidf.toarray())
+print("\nFeature Names:")
+print(vectorizer.get_feature_names_out())
